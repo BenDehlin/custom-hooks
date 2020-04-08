@@ -12,9 +12,7 @@ const useAxios = (url, dataName = "axios", initialData = []) => {
   useEffect(() => {
     axios
       .get(url)
-      .then((results) => {
-        setAxiosData(results.data)
-      })
+      .then(({ data }) => setAxiosData(data))
       .catch((err) => console.log(err))
   }, [url, dataName])
 
@@ -24,28 +22,26 @@ const useAxios = (url, dataName = "axios", initialData = []) => {
       [getAxios]: () => {
         axios
           .get(url)
-          .then((results) => {
-            setAxiosData(results.data)
-          })
+          .then(({ data }) => setAxiosData(data))
           .catch((err) => console.log(err))
       },
       [postAxios]: (body) => {
         axios
           .post(url, body)
-          .then((results) => {
-            setAxiosData(results.data)
-          })
+          .then(({ data }) => setAxiosData(data))
           .catch((err) => console.log(err))
       },
       [putAxios]: (id, body) => {
-        axios.put(`${url}/${id}`, body).then((results) => {
-          setAxiosData(results.data)
-        })
+        axios
+          .put(`${url}/${id}`, body)
+          .then(({ data }) => setAxiosData(data))
+          .catch((err) => console.log(err))
       },
       [deleteAxios]: (id) => {
-        axios.delete(`${url}/${id}`).then((results) => {
-          setAxiosData(results.data)
-        })
+        axios
+          .delete(`${url}/${id}`)
+          .then(({ data }) => setAxiosData(data))
+          .catch((err) => console.log(err))
       },
     },
   ]
