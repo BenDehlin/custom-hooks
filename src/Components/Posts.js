@@ -2,7 +2,7 @@ import React from 'react'
 import useAxios from '../hooks/useAxios'
 
 const Posts = (props) => {
-  const [posts, {deletePosts}] = useAxios('/api/posts', 'posts')
+  const [posts, {deletePosts}] = useAxios('posts')
   return (
     <div>
       {posts && posts[0] && posts.map(({id, content}) => (

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-const useAxios = (url, dataName = "axios", initialData = []) => {
+const useAxios = (dataName, initialData = []) => {
+  const url = `/api/${dataName}`
   const camelCaseDataName =
     dataName.substr(0, 1).toUpperCase() + dataName.substr(1).toLowerCase()
   const getAxios = `get${camelCaseDataName}`
@@ -14,7 +15,7 @@ const useAxios = (url, dataName = "axios", initialData = []) => {
       .get(url)
       .then(({ data }) => setAxiosData(data))
       .catch((err) => console.log(err))
-  }, [url, dataName])
+  }, [dataName])
 
   return [
     axiosData,
