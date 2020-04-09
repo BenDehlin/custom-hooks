@@ -5,10 +5,10 @@ const useInput = (initialState) => {
   return [
     values,
     {
-      setInput: ({ target }) => {
+      setInput: (e) => {
         setValues({
           ...values,
-          [target.name]: target.value,
+          [e.target.name]: e.target.value,
         })
       },
       resetInputs: () => {
