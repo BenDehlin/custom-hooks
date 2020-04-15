@@ -4,6 +4,7 @@ import PostForm from './Components/PostForm'
 import Posts from './Components/Posts'
 import Messages from './Components/Messages'
 import HookTutorial from './Components/HookTutorial';
+import User from './Components/User'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <PostForm />
       <Posts />
       <Messages />
+      <User />
     </div>
   );
 }

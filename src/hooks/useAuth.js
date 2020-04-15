@@ -1,8 +1,19 @@
-import React, {useState, useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useEffect} from 'react'
+import {useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
-const useAuth = (admin = false) => {
-  
+const useAuth = (adminRequired = false) => {
+  const {user_id, is_admin} = useSelector(({authReducer}) => authReducer.user)
+  const {push} = useHistory()
+  useEffect(()=> {
+    console.log(user_id, is_admin)
+    if(!user_id){
+      push('/login')
+    }
+    else if(adminRequired && !is_admin){
+      push('/dashboard')
+    }
+  },[user_id, is_admin])
 }
 
 

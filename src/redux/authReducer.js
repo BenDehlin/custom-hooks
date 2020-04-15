@@ -1,23 +1,23 @@
-const SET_PLAYER = 'SET_PLAYER'
+const SET_USER = 'SET_USER'
 
 const initialState = {
-  player: {
-    player_id: '',
+  user: {
+    user_id: '1',
     is_admin: false,
     username: '',
     email: ''
   }
 }
 
-export function setPlayer(payload){
-  return{type: SET_PLAYER, payload}
+export function setUser(payload){
+  return{type: SET_USER, payload}
 }
 
 export default function authReducer(state = initialState, action){
   const {type, payload} = action
   switch (type){
-    case SET_PLAYER:
-      return {...state, player: payload}
+    case SET_USER:
+      return {...state, user: payload}
     default:
       return state
   }
