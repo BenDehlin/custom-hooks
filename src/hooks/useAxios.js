@@ -5,14 +5,15 @@ const useAxios = (dataName, initialData = []) => {
   const url = `/api/${dataName}`
   const camelCaseDataName =
     dataName.substr(0, 1).toUpperCase() + dataName.substr(1).toLowerCase()
-  const getAxios = `get${camelCaseDataName}`
+  const getAxios = `get${camelCaseDataName}s`
+  const getSingleAxios = `get${camelCaseDataName}`
   const postAxios = `post${camelCaseDataName}`
   const putAxios = `put${camelCaseDataName}`
   const deleteAxios = `delete${camelCaseDataName}`
   const [axiosData, setAxiosData] = useState(initialData)
   useEffect(() => {
     axios
-      .get(url)
+      .get(`${url}s`)
       .then(({ data }) => setAxiosData(data))
       .catch((err) => console.log(err))
   }, [dataName])
@@ -22,7 +23,13 @@ const useAxios = (dataName, initialData = []) => {
     {
       [getAxios]: () => {
         axios
-          .get(url)
+          .get(`${url}s`)
+          .then(({ data }) => setAxiosData(data))
+          .catch((err) => console.log(err))
+      },
+      [getSingleAxios]: (id) => {
+        axios
+          .get(`${url}/${id}`)
           .then(({ data }) => setAxiosData(data))
           .catch((err) => console.log(err))
       },

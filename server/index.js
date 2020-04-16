@@ -34,12 +34,12 @@ massive(CONNECTION_STRING).then((db) => {
 
 //POST ENDPOINTS
 app.get("/api/posts", postCtrl.getPosts)
-app.post("/api/posts", postCtrl.createPost)
-app.put("/api/posts/:id", postCtrl.editPost)
-app.delete("/api/posts/:id", postCtrl.deletePost)
+app.post("/api/post", postCtrl.createPost)
+app.put("/api/post/:id", postCtrl.editPost)
+app.delete("/api/post/:id", postCtrl.deletePost)
 
 //MESSAGE ENDPOINTS
 app.get("/api/messages", messageCtrl.getMessages)
-app.post("/api/messages", messageCtrl.createMessage)
-app.put("/api/messages/:id", messageCtrl.editMessage)
-app.delete("/api/messages/:id", messageCtrl.deleteMessage)
+app.post("/api/message", messageCtrl.createMessage)
+app.put("/api/message/:id", messageCtrl.editMessage)
+app.delete("/api/message/:id", messageCtrl.deleteMessage)

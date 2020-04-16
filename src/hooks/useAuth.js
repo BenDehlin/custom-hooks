@@ -6,7 +6,6 @@ const useAuth = (adminRequired = false) => {
   const {user_id, is_admin} = useSelector(({authReducer}) => authReducer.user)
   const {push} = useHistory()
   useEffect(()=> {
-    console.log(user_id, is_admin)
     if(!user_id){
       push('/login')
     }
