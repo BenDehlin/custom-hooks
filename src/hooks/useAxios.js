@@ -1,25 +1,34 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-const useAxios = (dataName, initialData = []) => {
+const useAxios = (dataName, axiosId = null) => {
   const url = `/api/${dataName}`
   const camelCaseDataName =
     dataName.substr(0, 1).toUpperCase() + dataName.substr(1).toLowerCase()
-  const getAxios = `get${camelCaseDataName}s`
+  const pluralName = `${dataName}s`
+  const getAxios = `get${pluralName}`
   const getSingleAxios = `get${camelCaseDataName}`
   const postAxios = `post${camelCaseDataName}`
   const putAxios = `put${camelCaseDataName}`
   const deleteAxios = `delete${camelCaseDataName}`
-  const [axiosData, setAxiosData] = useState(initialData)
+  const [axiosData, setAxiosData] = useState([])
+  const [singleData, setSingleData] = useState({})
   useEffect(() => {
-    axios
-      .get(`${url}s`)
-      .then(({ data }) => setAxiosData(data))
-      .catch((err) => console.log(err))
-  }, [dataName])
+    if (axiosId) {
+      axios
+        .get(`${url}/${axiosId}`)
+        .then(({ data }) => setSingleData(data))
+        .catch((err) => console.log(err))
+    } else {
+      axios
+        .get(`${url}s`)
+        .then(({ data }) => setAxiosData(data))
+        .catch((err) => console.log(err))
+    }
+  }, [dataName, url])
 
   return [
-    axiosData,
+    { [dataName]: singleData, [pluralName]: axiosData },
     {
       [getAxios]: () => {
         axios
@@ -30,7 +39,7 @@ const useAxios = (dataName, initialData = []) => {
       [getSingleAxios]: (id) => {
         axios
           .get(`${url}/${id}`)
-          .then(({ data }) => setAxiosData(data))
+          .then(({ data }) => setSingleData(data))
           .catch((err) => console.log(err))
       },
       [postAxios]: (body) => {

@@ -2,7 +2,7 @@ import React from "react"
 import useAxios from "../hooks/useAxios"
 
 const Messages = (props) => {
-  const [messages, actions] = useAxios("message")
+  const [{ messages, message }, actions] = useAxios("message")
   return (
     <div>
       {messages &&

@@ -4,7 +4,7 @@ import useAuth from '../hooks/useAuth'
 // import {setUser} from '../redux/authReducer'
 
 const User = (props) => {
-  useAuth()
+  useAuth(true)
   return(
     <div></div>
   )
