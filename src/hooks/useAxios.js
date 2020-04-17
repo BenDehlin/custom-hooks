@@ -27,41 +27,40 @@ const useAxios = (dataName, axiosId = null) => {
     }
   }, [dataName, url])
 
-  return [
-    { [dataName]: singleData, [pluralName]: axiosData },
-    {
-      [getAxios]: () => {
-        axios
-          .get(`${url}s`)
-          .then(({ data }) => setAxiosData(data))
-          .catch((err) => console.log(err))
-      },
-      [getSingleAxios]: (id) => {
-        axios
-          .get(`${url}/${id}`)
-          .then(({ data }) => setSingleData(data))
-          .catch((err) => console.log(err))
-      },
-      [postAxios]: (body) => {
-        axios
-          .post(url, body)
-          .then(({ data }) => setAxiosData(data))
-          .catch((err) => console.log(err))
-      },
-      [putAxios]: (id, body) => {
-        axios
-          .put(`${url}/${id}`, body)
-          .then(({ data }) => setAxiosData(data))
-          .catch((err) => console.log(err))
-      },
-      [deleteAxios]: (id) => {
-        axios
-          .delete(`${url}/${id}`)
-          .then(({ data }) => setAxiosData(data))
-          .catch((err) => console.log(err))
-      },
+  return {
+    [dataName]: singleData,
+    [pluralName]: axiosData,
+    [getAxios]: () => {
+      axios
+        .get(`${url}s`)
+        .then(({ data }) => setAxiosData(data))
+        .catch((err) => console.log(err))
     },
-  ]
+    [getSingleAxios]: (id) => {
+      axios
+        .get(`${url}/${id}`)
+        .then(({ data }) => setSingleData(data))
+        .catch((err) => console.log(err))
+    },
+    [postAxios]: (body) => {
+      axios
+        .post(url, body)
+        .then(({ data }) => setAxiosData(data))
+        .catch((err) => console.log(err))
+    },
+    [putAxios]: (id, body) => {
+      axios
+        .put(`${url}/${id}`, body)
+        .then(({ data }) => setAxiosData(data))
+        .catch((err) => console.log(err))
+    },
+    [deleteAxios]: (id) => {
+      axios
+        .delete(`${url}/${id}`)
+        .then(({ data }) => setAxiosData(data))
+        .catch((err) => console.log(err))
+    },
+  }
 }
 
 export default useAxios

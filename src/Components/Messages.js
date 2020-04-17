@@ -2,7 +2,15 @@ import React from "react"
 import useAxios from "../hooks/useAxios"
 
 const Messages = (props) => {
-  const [{ messages, message }, actions] = useAxios("message")
+  const {
+    message,
+    messages,
+    getMessage,
+    getMessages,
+    postMessage,
+    putMessage,
+    deleteMessage,
+  } = useAxios("message")
   return (
     <div>
       {messages &&
@@ -10,7 +18,7 @@ const Messages = (props) => {
         messages.map(({ id, content }) => (
           <div key={id}>
             <h1>{content}</h1>
-            <button onClick={() => actions.deleteMessage(id)}>Delete</button>
+            <button onClick={() => deleteMessage(id)}>Delete</button>
           </div>
         ))}
     </div>
