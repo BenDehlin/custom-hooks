@@ -5,6 +5,14 @@ module.exports = {
   getPosts: (req, res) => {
     res.status(200).send(posts)
   },
+  getPost: (req, res) => {
+    const { id } = req.params
+    const post = posts.find((post) => +post.id === +id)
+    if (!post) {
+      res.status(404).send("post not found")
+    }
+    res.status(200).send(post)
+  },
   createPost: (req, res) => {
     const { content } = req.body
     const post = { id, content }

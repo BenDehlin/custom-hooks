@@ -1,5 +1,6 @@
 import React from "react"
 import useAxios from "../hooks/useAxios"
+import { useHistory } from "react-router-dom"
 
 const Posts = (props) => {
   const {
@@ -11,6 +12,7 @@ const Posts = (props) => {
     putPost,
     deletePost,
   } = useAxios("post")
+  const { push } = useHistory()
   return (
     <div>
       <button onClick={() => getPosts()}>Refresh</button>
@@ -20,7 +22,7 @@ const Posts = (props) => {
           <div key={id}>
             <h1>{content}</h1>
             <button onClick={() => deletePost(id)}>Delete</button>
-            <button onClick={() => getPost(id)}>Get Post</button>
+            <button onClick={() => push(`/post/${id}`)}>View Post</button>
           </div>
         ))}
     </div>

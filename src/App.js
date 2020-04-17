@@ -5,15 +5,17 @@ import Posts from './Components/Posts'
 import Messages from './Components/Messages'
 import HookTutorial from './Components/HookTutorial';
 import User from './Components/User'
+import routes from './routes'
 
 function App() {
   return (
     <div className="App">
-      <HookTutorial />
+      {routes}
+      {/* <HookTutorial />
       <PostForm />
       <Posts />
       <Messages />
-      <User />
+      <User /> */}
     </div>
   );
 }
