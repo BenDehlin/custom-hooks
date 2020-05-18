@@ -12,9 +12,7 @@ const useInput = (initialState) => {
         })
       },
       resetInputs: () => {
-        for(let key in values){
-          setValues({[key]: ''})
-        }
+        setValues(initialState)
       }
     }
 
